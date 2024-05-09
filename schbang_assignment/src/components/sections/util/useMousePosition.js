@@ -1,0 +1,19 @@
+// crating hook to get mouse position
+
+import {useState, useEffect} from 'react';
+
+export default function useMousePosition(){
+    const [mousePosition, setMousePosition] = useState( {x: 700, y: 700});
+
+    const updateMousePosition = (e) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+    }
+    // console.log('1',x, y);
+    useEffect(() => {
+        window.addEventListener("mousemove", updateMousePosition);
+        return ()=>{
+            window.removeEventListener("mousemove", updateMousePosition);
+        }
+    }, []);
+    return mousePosition;
+}
