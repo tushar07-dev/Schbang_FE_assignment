@@ -7,13 +7,13 @@ import instagram from "./../../../public/instagram.png";
 
 const Footer = () => {
   return (
-    <div className=" flex justify-around h-96 mb-4 md:h-[427px] w-screen md:w-[1440px] m-auto mt-40 overflow-hidden">
+    <div className="flex justify-around h-[24rem] mb-4 md:h-[427px] w-full  m-auto mt-40 overflow-hidden">
       <div className="max-w-[281px] px-1 h-[full] flex flex-col relative">
         <div className="flex gap-1 md:gap-3 cursor-pointer">
           <Image src={logo} className="w-5 h-5 my-auto" alt="logo" />
           <span className="font-bold sm:text-lg md:text-2xl">Travlog</span>
         </div>
-        <span className="font-extralight text-sm sm:text-lg md:text-xl pt-9">
+        <span className="truncate-4-lines font-extralight text-sm sm:text-lg md:text-xl pt-9 pb-20">
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC.
         </span>

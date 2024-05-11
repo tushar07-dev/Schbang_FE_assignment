@@ -12,7 +12,8 @@ import rect2 from "./../../../public/rectangle2.png";
 import rect3 from "./../../../public/rectangle3.png";
 import heroimg from "./../../../public/heroimg.png";
 import { Borel } from "next/font/google";
-import {motion} from 'framer-motion'
+import {motion} from 'framer-motion';
+import MaskedComponent from './util/MaskedComponent';
 
 const Hero = () => {
   const [isHovered, setisHovered] = useState(false);
@@ -24,14 +25,13 @@ const Hero = () => {
 }, [x, y]);
   return (
     <motion.div animate={{
-      // WebkitMaskPosition: `${x-270}px ${y-360}px`,
-      // WebkitMaskPosition: `${x-size/2}px ${y-size/2}px`,
       WebkitMaskPosition: `${x-size}px ${y-size}px`,
-      webKitMaskSize: `${size}px`
-    }} className={`max-w-[1199px] h-[full] m-10 md:mt-28  mx-auto overflow-hidden ${styles.main}`}>
+      webKitMaskSize: `${size}px`,
+    }} className={`max-w-[1199px]  m-10 md:mt-28  mx-auto  ${styles.main}`}>
       <div className="md:flex-row md:items-center gap-6  md:gap-20 flex flex-col items-center">
         {/* Left */}
-        <div className="w-[427px] h-[548px] px-8  relative">
+
+        <div className="w-[100vw] md:w-[427px] h-[548px] px-8 relative">
           <div className="flex flex-col">
             <button className="bg-red-100 w-fit flex py-3 px-10 rounded-full text-center gap-2 hover:bg-red-200 hover:scale-105">
               <span className="text-[#F85E9F]  h-[17px]">
@@ -49,8 +49,8 @@ const Hero = () => {
               }}
               transition={{
                 type: 'spring',
-                duration: 0.2,
-                ease: 'easeIn',
+                duration: `${isHovered ? 0.2 : 3}`,
+                ease: 'easeInOut',
               }}
 
               className={`continersss w-full text-5xl sm:text-6xl font-semibold my-8 leading-snug ${styles.mask} test-one`}>

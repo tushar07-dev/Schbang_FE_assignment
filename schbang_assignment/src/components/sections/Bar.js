@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const Bar = () => {
   return (
-    <div className="flex flex-col gap-10 md:flex-row mx-auto items-center justify-around max-w-[1240px] overflow-hidden py-28">
+    <div className="flex flex-col md:flex-row gap-10 md:gap-0 mx-auto items-center justify-around max-w-screen-lg overflow-hidden py-0 md:py-0">
       <Image className="" src={tripadvisor} alt="tripadvisor.png" />
       <Image src={expedia} alt="demo.png" />
       <Image src={booking} alt="demo.png" />

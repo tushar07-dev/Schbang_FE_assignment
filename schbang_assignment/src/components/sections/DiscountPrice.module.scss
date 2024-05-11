@@ -1,0 +1,17 @@
+.counter {
+  font-size: 2rem;
+  font-weight: bold;
+  animation: count 2s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes count {
+  0% {
+    opacity: 0;
+    content: "0";
+  }
+  100% {
+    opacity: 1;
+    content: "100";
+  }
+}

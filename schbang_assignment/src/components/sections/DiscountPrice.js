@@ -4,42 +4,76 @@ import React, { useEffect, useState } from "react";
 import bannergirl from "./../../../public/bannergirl.png";
 import ticket from "./../../../public/ticket.png";
 import percent from "./../../../public/percent.png";
+import styles from './DiscountPrice.module.scss';
 
 const DiscountPrice = () => {
-  // let targetNumber = 500;
+
+  let targetNumber = 500;
   let hotel = 100;
   let airlines = 7;
   let customer = 7;
   let interval = 10;
 
-  const [holidayPackage, setHolidayPackage] = useState(500);
-  useEffect(() => {
-    let timer;
+  // const [holidayPackage, setHolidayPackage] = useState(500);
+  // useEffect(() => {
+  //   let timer;
 
-    const startCounting = () => {
-      timer = setInterval(() => {
-        setHolidayPackage(prevCount => {
-          if (prevCount < targetNumber) {
-            return prevCount + 1;
-          } else {
-            clearInterval(timer);
-            setTimeout(() => {
-              setHolidayPackage(0);
-              startCounting();
-            }, 2000);
-            return prevCount;
-          }
-        });
-      }, 10); // Update count every 10 milliseconds
-    };
+  //   const startCounting = () => {
+  //     timer = setInterval(() => {
+  //       setHolidayPackage(prevCount => {
+  //         if (prevCount < targetNumber) {
+  //           return prevCount + 1;
+  //         } else {
+  //           clearInterval(timer);
+  //           setTimeout(() => {
+  //             setHolidayPackage(0);
+  //             startCounting();
+  //           }, 2000);
+  //           return prevCount;
+  //         }
+  //       });
+  //     }, 10); // Update count every 10 milliseconds
+  //   };
 
-    startCounting();
+  //   startCounting();
 
-    return () => clearInterval(timer);
-  }, [targetNumber]);
+  //   return () => clearInterval(timer);
+  // }, [targetNumber]);
+
+  // const targetNumber = 500;
+  // const interval = 10;
+  function useCounterAnimation(targetNumber, interval) {
+    const [count, setCount] = useState(0);
   
+    useEffect(() => {
+      let timer;
+      const startCounting = () => {
+        // let secInterval = 0;
+        timer = setInterval(() => {
+          setCount(prevCount => {
+            if (prevCount < targetNumber) {
+              return prevCount + 1;
+            } else {
+              clearInterval(timer);
+              return prevCount;
+            }
+          });
+        }, 10);
+      };
+      setInterval(() => {
+        setCount(1); // Reset count to 1 instead of 0
+        startCounting();
+      }, 4000);
+    
+      return () => clearInterval(timer);
+    }, [targetNumber, interval]);
+  
+    return count;
+  }
+  
+  const count = useCounterAnimation(targetNumber, interval);
   return (
-    <div className="md:w-[1277px] md:h-[700px] flex flex-col md:flex-row mt-28 overflow-hidden m-auto items-center">
+    <div className=" main flex flex-col lg:flex-row md:mt-28 mx-auto items-center">
       {/* left */}
       <div className="relative">
         <div className="absolute right-14 top-28 flex gap-3 py-3 px-8 bg-white rounded-full items-center cursor-pointer hover:scale-105 hover:border border-red-200">
@@ -77,11 +111,12 @@ const DiscountPrice = () => {
             <div className="w-1/2 h-40 bg-red-50  flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-400 hover:scale-105 hover:bg-red-100 cursor-pointer">
               <h2 className="text-[#FF5722] text-3xl"><span className="data-val">
               {/* <AnimatedCounter targetNumber={10} delay={1700} /> */}
-                </span>+</h2>
+                </span></h2>
+                <div className="text-[#FF5722] text-3xl bold">${count}</div>
               <h4>Holiday Package</h4>
             </div>
             <div className="w-1/2 bg-red-50 h-40 flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-400 hover:scale-105 hover:bg-red-100 cursor-pointer">
-              <h2 className="text-[#FF5722] text-3xl"><span className="data-val"> ${holidayPackage}</span>+</h2>
+              <h2 className="text-[#FF5722] text-3xl"><span className="data-val"> 100 </span></h2>
               <h4>Luxury Hotel</h4>
             </div>
           </div>
